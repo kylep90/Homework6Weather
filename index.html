@@ -8,14 +8,14 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>Weather Dashboard</title>
+    <title>Hello, world!</title>
   </head>
   <body style="margin:20px; padding:auto">
 
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
           <h1 class="display-4">Weather Dashboard</h1>
-          <p class="lead">This will give you the weather information for the city of your choice.</p>
+          <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
         </div>
       </div>
 
@@ -23,7 +23,7 @@
         <div class="card-body">
           <h5 class="card-title">Search a city</h5>
           <input  class="form-control" id="city">
-          <p class="card-text"></p>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
           <a id="searchBtn" href="#" class="btn btn-primary">Search</a>
         </div>
       </div>
@@ -32,7 +32,6 @@
         <div class="card-body">
         <h5 class="card-title">Your requested info</h5>
             <h2 class="city"></h2>
-            <h5 class="date"></h5>
             <img class="icon"></img>
             <h5 class="temp"></h5>
             <h5 class="humidity"></h5>
@@ -102,145 +101,144 @@
 
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript">
+    <script src="./script.js">
     
-
-      $("#searchBtn").on("click", function(){ 
+// document.ready()
+//       $("#searchBtn").on("click", function(){ 
       
-      // var i = 0
-      var city = $("#city").val();
-      // // for(var i = 0; i<10; i++)
-      // // console.log(i + city)
-      // localStorage.setItem(i, city)
-      // }
+//       // var i = 0
+//       var city = $("#city").val();
+//       // // for(var i = 0; i<10; i++)
+//       // // console.log(i + city)
+//       // localStorage.setItem(i, city)
+//       // }
 
+//       // var cities = [""]
 
-
-
-// var all = JSON.stringify(localStorage.setItem('key', city))
-// console.log(all)
       
-      var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city +"&appid=68104193d77dd20a330828b49be243ea" //Current 
-      var queryURL5 = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=68104193d77dd20a330828b49be243ea" //5Day Forecast
-        
 
-      $.ajax({
-        url: queryURL,
-        method: "GET"
-      }).then(function(response) {
-        console.log(response)
-  
-
-
-
-        // var storage = localStorage.setItem('name of city', response.name)
-        $(".city").text("City name: " + response.name)
-        // $(".date").text(response.timezone)     
-        $(".windSpeed").text("Wind Speed: " + response.wind.speed + "MPH")
-        $(".humidity").text("Humidity: " + response.main.humidity +"%")
-
-        var icon = response.weather[0].icon
-        $(".icon").attr("src", "http://openweathermap.org/img/w/" +icon +".png")
-       
-        var tempC = parseInt(response.main.temp - 273.15)
-        $(".temp").text("Temperature: " + tempC + "°C")
-       
-        var lat = response.coord.lat
-        var lon = response.coord.lon
     
       
-        var queryURL2 = "http://api.openweathermap.org/data/2.5/uvi?appid=68104193d77dd20a330828b49be243ea"+ "&lat="+ lat +"&lon=" + lon
-
-        $.ajax({
-        url: queryURL2,
-        method: "GET"
-      }).then(function(response) {
-
-        //UV Index Alert
-        var uv = response.value
-
-        if (uv < 3 ){
-            $("#uvBtn").attr("class", "btn btn-success")
-            $("#uvBtn").css("background-color", "green")
-            $("#uvBtn").css("border-color", "green")
-            $("#uvBtn").text("Low")
-        }
-          else if (3 < uv && uv < 6){
-            $("#uvBtn").attr("class", "btn btn-success")
-            $("#uvBtn").css("background-color", "yellow")
-            $("#uvBtn").css("border-color", "yellow")
-            $("#uvBtn").text("Moderate")
-          }
-          else if(6 < uv  && uv < 8){
-            $("#uvBtn").attr("class", "btn btn-success")
-            $("#uvBtn").css("background-color", "orange")
-            $("#uvBtn").css("border-color", "orange")
-            $("#uvBtn").text("High")
-          }
-         else if(8 < uv && uv< 11){
-            $("#uvBtn").attr("class", "btn btn-success")
-            $("#uvBtn").css("background-color", "red")
-            $("#uvBtn").css("border-color", "red")
-            $("#uvBtn").text("Very High")
-          }
-
-          else{
-            $("#uvBtn").attr("class", "btn btn-success")
-            $("#uvBtn").css("background-color", "purple")
-            $("#uvBtn").css("border-color", "purple")
-            $("#uvBtn").text("Extreme")
-          } 
-        $(".uvIndex").text("UV Index: " + response.value)
-
-      })
-      $.ajax({
-        url: queryURL5,
-        method: "GET"
-      }).then(function(response) {
-        console.log(response)
-
-        // Day 1
-        $("#date1").text(response.list[4].dt_txt)
-        var tempC1 = parseInt(response.list[4].main.temp - 273.15)
-        $("#temp1").text("Temp: " + tempC1 + "°C")
-        $("#humidity1").text("Humidity: " + response.list[4].main.humidity + "%")
-        $("#icon1").attr("src", "http://openweathermap.org/img/w/" + response.list[4].weather[0].icon + ".png") //gets the icon
+//       var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city +"&appid=68104193d77dd20a330828b49be243ea"
+//       var queryURL5 = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=68104193d77dd20a330828b49be243ea"
         
 
-        // Day 2
-        $("#date2").text(response.list[12].dt_txt)
-        var tempC2 = parseInt(response.list[12].main.temp - 273.15)
-        $("#temp2").text("Temp: " + tempC2 + "°C")
-        $("#humidity2").text("Humidity: " + response.list[12].main.humidity + "%")
-        $("#icon2").attr("src", "http://openweathermap.org/img/w/" + response.list[12].weather[0].icon + ".png")
+//       $.ajax({
+//         url: queryURL,
+//         method: "GET"
+//       }).then(function(response) {
+//         var cityweather = {
+//           name: response.name}
 
-        // Day 3
-        $("#date3").text(response.list[20].dt_txt)
-        var tempC3 = parseInt(response.list[20].main.temp - 273.15)
-        $("#temp3").text("Temp: " + tempC3 + "°C")
-        $("#humidity3").text("Humidity: " + response.list[20].main.humidity + "%")
-        $("#icon3").attr("src", "http://openweathermap.org/img/w/" + response.list[20].weather[0].icon + ".png")
+//         // })
 
-        // Day 4
-        $("#date4").text(response.list[28].dt_txt)
-        var tempC4 = parseInt(response.list[28].main.temp - 273.15)
-        $("#temp4").text("Temp: " + tempC4 + "°C")
-        $("#humidity4").text("Humidity: " + response.list[28].main.humidity + "%")
-        $("#icon4").attr("src", "http://openweathermap.org/img/w/" + response.list[28].weather[0].icon + ".png")
+//         // var storage = localStorage.setItem('name of city', response.name)
+//         $(".city").text("City name: " + response.name)
+//         $(".date").text(response.lastupdate)        //EDIT THIS
+//         $(".windSpeed").text("Wind Speed: " + response.wind.speed + "MPH")
+//         $(".humidity").text("Humidity: " + response.main.humidity +"%")
 
-        // Day 5
-        $("#date5").text(response.list[36].dt_txt)
-        var tempC5 = parseInt(response.list[36].main.temp - 273.15)
-        $("#temp5").text("Temp: " + tempC5 + "°C")
-        $("#humidity5").text("Humidity: " + response.list[36].main.humidity + "%")
-        $("#icon5").attr("src", "http://openweathermap.org/img/w/" + response.list[36].weather[0].icon + ".png")
+//         var icon = response.weather[0].icon
+//         $(".icon").attr("src", "http://openweathermap.org/img/w/" +icon +".png")
+       
+//         var tempC = parseInt(response.main.temp - 273.15)
+//         $(".temp").text("Temperature: " + tempC + "°C")
+       
+//         var lat = response.coord.lat
+//         var lon = response.coord.lon
+    
+      
+//         var queryURL2 = "http://api.openweathermap.org/data/2.5/uvi?appid=68104193d77dd20a330828b49be243ea"+ "&lat="+ lat +"&lon=" + lon
+
+//         $.ajax({
+//         url: queryURL2,
+//         method: "GET"
+//       }).then(function(response) {
+
+//         var uv = response.value
+
+//         if (uv < 3 ){
+//             $("#uvBtn").attr("class", "btn btn-success")
+//             $("#uvBtn").css("background-color", "green")
+//             $("#uvBtn").css("border-color", "green")
+//             $("#uvBtn").text("Low")
+//         }
+//           else if (3 < uv && uv < 6){
+//             $("#uvBtn").attr("class", "btn btn-success")
+//             $("#uvBtn").css("background-color", "yellow")
+//             $("#uvBtn").css("border-color", "yellow")
+//             $("#uvBtn").text("Moderate")
+//           }
+//           else if(6 < uv  && uv < 8){
+//             $("#uvBtn").attr("class", "btn btn-success")
+//             $("#uvBtn").css("background-color", "orange")
+//             $("#uvBtn").css("border-color", "orange")
+//             $("#uvBtn").text("High")
+//           }
+//          else if(8 < uv && uv< 11){
+//             $("#uvBtn").attr("class", "btn btn-success")
+//             $("#uvBtn").css("background-color", "red")
+//             $("#uvBtn").css("border-color", "red")
+//             $("#uvBtn").text("Very High")
+//           }
+
+//           else{
+//             $("#uvBtn").attr("class", "btn btn-success")
+//             $("#uvBtn").css("background-color", "purple")
+//             $("#uvBtn").css("border-color", "purple")
+//             $("#uvBtn").text("Extreme")
+//           } 
+//         $(".uvIndex").text("UV Index: " + response.value)
+
+//       })
+//       $.ajax({
+//         url: queryURL5,
+//         method: "GET"
+//       }).then(function(response) {
+//         console.log(response)
+//         // Day 1
+//         $("#date1").text(response.list[4].dt_txt)
+//         var tempC1 = parseInt(response.list[4].main.temp - 273.15)
+//         $("#temp1").text("Temp: " + tempC1 + "°C")
+//         $("#humidity1").text("Humidity: " + response.list[4].main.humidity + "%")
+//         $("#icon1").attr("src", "http://openweathermap.org/img/w/" + response.list[4].weather[0].icon + ".png")
+        
+
+//         // Day 2
+//         $("#date2").text(response.list[12].dt_txt)
+//         var tempC2 = parseInt(response.list[12].main.temp - 273.15)
+//         $("#temp2").text("Temp: " + tempC2 + "°C")
+//         $("#humidity2").text("Humidity: " + response.list[12].main.humidity + "%")
+//         $("#icon2").attr("src", "http://openweathermap.org/img/w/" + response.list[12].weather[0].icon + ".png")
+
+//         // Day 3
+//         $("#date3").text(response.list[20].dt_txt)
+//         var tempC3 = parseInt(response.list[20].main.temp - 273.15)
+//         $("#temp3").text("Temp: " + tempC3 + "°C")
+//         $("#humidity3").text("Humidity: " + response.list[20].main.humidity + "%")
+//         $("#icon3").attr("src", "http://openweathermap.org/img/w/" + response.list[20].weather[0].icon + ".png")
+
+//         // Day 4
+//         $("#date4").text(response.list[28].dt_txt)
+//         var tempC4 = parseInt(response.list[28].main.temp - 273.15)
+//         $("#temp4").text("Temp: " + tempC4 + "°C")
+//         $("#humidity4").text("Humidity: " + response.list[28].main.humidity + "%")
+//         $("#icon4").attr("src", "http://openweathermap.org/img/w/" + response.list[28].weather[0].icon + ".png")
+
+//         // Day 5
+//         $("#date5").text(response.list[36].dt_txt)
+//         var tempC5 = parseInt(response.list[36].main.temp - 273.15)
+//         $("#temp5").text("Temp: " + tempC5 + "°C")
+//         $("#humidity5").text("Humidity: " + response.list[36].main.humidity + "%")
+//         $("#icon5").attr("src", "http://openweathermap.org/img/w/" + response.list[36].weather[0].icon + ".png")
 
 
-      })
-      });
+//       })
+//       });
 
 
-      });
-    </script>
+//       });
+</script>
+
 </body>
 </html>
