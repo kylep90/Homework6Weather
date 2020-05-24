@@ -3,22 +3,23 @@ $(document).ready(function(){
   
       $("#searchBtn").on("click", function(){ 
       
-      // var i = 0
       var city = $("#city").val();
 
       currentWeatherData(city);
       weatherForecast(city);
-      // // for(var i = 0; i<10; i++)
-      // // console.log(i + city)
-      // localStorage.setItem(i, city)
-      // }
+      addToSearchHistory(city);
       })
 
 
       var cities = [];
 
       
+function addToSearchHistory(city){
 
+  var entry = $("<button>").addClass("new-row").text(city);
+  $(".search-history").append(entry);
+  $("#city").val("");
+}
     
       
      
@@ -31,9 +32,9 @@ function currentWeatherData(city){
         url: queryURL,
         method: "GET"
       }).then(function(response) {
-  if(cities.indexOf(city) === -1){
+  if(cities.indexOf(city) === -1){ //if the new city is not already in the array cities...
         cities.push(city);
-        localStorage.setItem("history", cities)
+        localStorage.setItem("history", cities) //history is the key, cities is the value
   }
 
 
@@ -145,7 +146,25 @@ function currentWeatherData(city){
 
       })
       }
+    
 
+if(localStorage.getItem("history")){
+  cities = localStorage.getItem("history").split(",") //Setting the history array with the cities and splits everytime you see ,
+}
 
+if(cities.length > 1){
+cities[cities.length - 1]
+      currentWeatherData(cities[cities.length - 1]);
+      weatherForecast(cities[cities.length - 1]);
+}
+
+for(var i = 0; i < cities.length; i++){
+  addToSearchHistory(cities[i]);
+}
+
+$(".search-history").on("click", "button", function(){ 
+  currentWeatherData($(this).text()); //grabs the text from the button
+  weatherForecast($(this).text());
+})
       });
    
